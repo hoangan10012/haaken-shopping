@@ -1,0 +1,26 @@
+.main {
+    min-height: 100vh;
+    padding-top: 130px;
+    padding-bottom: 100px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 1300px;
+  }
+  .namepage{
+    height: 144px;
+    background-color: black;
+
+  }
+  .gridtittle{
+    margin-left: 15%;
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cardcontent{
+      text-align: center;
+  }
