@@ -1,10 +1,10 @@
 
 .main {
   min-height: 100vh;
-  padding: 4rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
+  width: auto;
 }
 .listpro{
   width: 1300px;
@@ -69,7 +69,7 @@
   letter-spacing: .26em;
   text-align: right;
 }
-.footer {
+/* .footer {
   display: flex;
   flex: 1;
   padding: 2rem 0;
@@ -170,4 +170,4 @@
     width: 100%;
     flex-direction: column;
   }
-}
+} */

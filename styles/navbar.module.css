@@ -1,0 +1,25 @@
+.container{
+    height: 125px;
+    padding: 0px 50px;
+ align-items: center;
+ justify-content: space-between;
+ position: sticky;
+ top:0;
+}
+.list{
+    padding: 0;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding-left: 10%;
+}
+.listitem{
+    margin: 20px;
+    font-weight: 600;
+}
+.icon{
+    color: black;
+}
+.login{
+    justify-content: space-around;
+}
