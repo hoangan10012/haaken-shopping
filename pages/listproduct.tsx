@@ -7,10 +7,27 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useState } from 'react'
+import {getProductList, addProduct } from '../context/service'
 export interface IAppProps {
 }
 
 export default function App(props: IAppProps) {
+    const [data, setData] = useState({
+        id:'',
+        name: '',
+        price: '',
+        img:null
+      })
+      const getProduct = async (e: any) => {
+        e.preventDefault()
+        try {
+          
+          
+        } catch (err) {
+          console.log(err)
+        }
+      }
     return (
         <div>
             <div className={styles.namepage}>

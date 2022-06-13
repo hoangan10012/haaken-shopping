@@ -8,6 +8,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import TextareaAutosize from '@mui/material/TextareaAutosize'
 import Button from '@mui/material/Button';
+import { CashOnDeli } from '../components/CashOnDeli';
+import { Tablecart } from '../components/Tablecart';
 export interface IAppProps {
 }
 
@@ -25,17 +27,7 @@ export default function App(props: IAppProps) {
           <span style={{ color: 'white' }} >Home/Checkout</span>
         </div>
       </div>
-      <main className={styles.main}>
-        <div className={styles.coupon}>
-          <Grid container rowSpacing={1} >
-            <Grid item xs={12} style={{ textAlign: 'center' }}>
-              <p>Have a coupon</p>
-            </Grid>
-            <Grid item xs={12} style={{ textAlign: 'center' }}>
-              <a href="">Click here to enter your code</a>
-            </Grid>
-          </Grid>
-        </div>
+      {/* <main className={styles.main}>
         <div id='info'>
           <Grid container rowSpacing={1} >
             <Grid item xs={6} >
@@ -218,6 +210,10 @@ export default function App(props: IAppProps) {
         </div>
         <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
         <Button variant="contained">PLACE HOLDER</Button>
+      </main> */}
+
+      <main  className={styles.main}>
+        <Tablecart/>
       </main>
     </div>
   );
