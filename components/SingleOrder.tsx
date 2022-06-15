@@ -7,7 +7,6 @@ import { db } from '../config/firebase';
 import { deleteDoc, doc } from 'firebase/firestore';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
-import moment from 'moment';
 
 export const SingleOrder = ({ order}: any) => {
     const { user } = useAuth();
@@ -18,14 +17,18 @@ export const SingleOrder = ({ order}: any) => {
             console.log('order id :',order.id)
         }
     }
-
+    let date = order.data.timeStamp.toDate();
+    let mm = date.getMonth()+1;
+    let dd = date.getDate();
+    let yyyy = date.getFullYear();
+    date = mm + '/' + dd + '/' + yyyy;
     return (
     <>
     <TableRow
         key={order.id}
         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
     >
-        <TableCell  align="right">{moment(order.timeStamp).format("MMMM dddd,yyyy")}</TableCell>
+        <TableCell  align="right">{date}</TableCell>
          <TableCell align="right">{order.data.username}</TableCell>
          <TableCell align="right">{order.data.Address}</TableCell>
          <TableCell align="right">{order.data.Phone}</TableCell>

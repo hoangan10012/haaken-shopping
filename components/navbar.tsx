@@ -35,48 +35,6 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 export interface Navbar {
 }
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
-    width: 'auto',
-  },
-  
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
-    },
-  },
-}));
-
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -136,21 +94,14 @@ export default function Navbar() {
   })
   console.log('role ne ', role);
 
-  const [search,setSearch]=useState("");
-  const handleSubmit = (e:any)=>{
-    e.preventDefault();
-    router.push(`/search?name=${search}`)
-    setSearch("");
-  }
-
   return (
 
-    <AppBar position="static" sx={{ backgroundColor: 'white', color: 'black' }} >
-      <Grid container className={styles.container}>
-        <Grid item xs className={styles.item}>
+    <AppBar position="static" className={styles.container} sx={{ backgroundColor: 'white', color: 'black' }} >
+      <Grid container spacing={3} >
+        <Grid item xs={4} className={styles.list}>
           <img width="95" height="56" src="https://haaken.qodeinteractive.com/wp-content/uploads/2021/04/h1-logo-1.png" alt='' />
         </Grid>
-        <Grid item xs className={styles.item}>
+        <Grid item xs={4} className={styles.item} style={{justifyContent: 'center'}}>
           <ul className={styles.list}>
             <li className={styles.listitem}>
               <Link href="/">
@@ -158,85 +109,62 @@ export default function Navbar() {
               </Link>
             </li>
             <li className={styles.listitem}>
-              {/* <Link href="/about">
-                <a>ABOUT</a>
-              </Link> */}
-              <form onSubmit={handleSubmit} >
-              <Search >
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  placeholder="Search…"
-                  inputProps={{ 'aria-label': 'search' }}
-                  onChange={(e)=>setSearch(e.target.value)}
-                  value={search}
-                />
-              </Search>
-              </form>
-             
-            </li>
-            <li className={styles.listitem}>
               <Link href="/collections">
                 <a>COLLECTIONS</a>
               </Link>
             </li>
-           
+            <li className={styles.listitem}>
+              <Link href="/about">
+                <a>ABOUT</a>
+              </Link>
+            </li>
+
           </ul>
         </Grid>
-        <Grid item xs className={styles.item} style={{ textAlign: 'end', display: 'contents' }}>
+        <Grid item xs={4} style={{ textAlign: 'end', display: 'contents' }}>
           {user && role.length > 0 &&
             <>
-              {/* <Link href='/upload'>
-            <Button>Upload</Button>
-            </Link>
-            <Link href='/customers'>
-            <Button>Customers</Button>
-            </Link>
-            <Link href='/order'>
-            <Button>Pending</Button>  
-            </Link>  */}
-              <PopupState variant="popover" popupId="demo-popup-popover">
-                {(popupState: any) => (
-                  <div >
-                    <Button variant="contained" {...bindTrigger(popupState)}>
-                      Admin
-                    </Button>
-                    <Popover
-                      {...bindPopover(popupState)}
-                      anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'center',
-                        
-                      }}
-                      transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'center',
-                      }}
-                      
-                    >
-                      <div style={{display: 'grid'}}>
-                      <Link href='/upload'>
-                        <Button>Upload</Button>
-                      </Link>
-                      <Link href='/customers'>
-                        <Button>Customers</Button>
-                      </Link>
-                      <Link href='/order'>
-                        <Button>Pending</Button>
-                      </Link>
-                      </div>
-                      
+              <div className={styles.list} style={{ marginTop: '2%' }}>
+                <PopupState variant="popover" popupId="demo-popup-popover">
+                  {(popupState: any) => (
+                    <div >
+                      <Button variant="contained" {...bindTrigger(popupState)}>
+                        Admin
+                      </Button>
+                      <Popover
+                        {...bindPopover(popupState)}
+                        anchorOrigin={{
+                          vertical: 'bottom',
+                          horizontal: 'center',
 
-                    </Popover>
-                  </div>
-                )}
-              </PopupState>
+                        }}
+                        transformOrigin={{
+                          vertical: 'top',
+                          horizontal: 'center',
+                        }}
+
+                      >
+                        <div style={{ display: 'grid' }}>
+                          <Link href='/upload'>
+                            <Button>Upload</Button>
+                          </Link>
+                          <Link href='/customers'>
+                            <Button>Customers</Button>
+                          </Link>
+                          <Link href='/order'>
+                            <Button>Pending</Button>
+                          </Link>
+                        </div>
+                      </Popover>
+                    </div>
+                  )}
+                </PopupState>
+              </div>
             </>
           }
           {user ? (
             <>
-              <div style={{ display: 'flex', justifyContent: 'end' }}>
+              <div style={{ display: 'flex', justifyContent: 'end', marginTop: '2%' }} className={styles.list}>
                 <Link href='/history'>
                   <Button>purchase history</Button>
                 </Link>
@@ -284,16 +212,21 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link href='/login'>
-                <Button className={styles.icon}>
+              <div className={styles.list} style={{ paddingTop: 'inherit', textAlign: 'center', marginLeft: '5%' }}>
+                <Link href='/login'>
+                  <Button  >
+                    Login
+                  </Button>
+                </Link>
+                <Link href='/register'>
+                  <Button >
+                    Register
+                  </Button>
+                </Link>
+              </div>
 
-                  <PersonIcon ></PersonIcon>
-
-                </Button>
-              </Link>
 
 
-              <Button className={styles.icon}> <SearchIcon ></SearchIcon></Button>
             </>
           )}
         </Grid>

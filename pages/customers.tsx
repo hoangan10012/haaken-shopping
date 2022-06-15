@@ -12,7 +12,8 @@ import { collection, doc, onSnapshot, serverTimestamp, updateDoc } from 'firebas
 import { db } from '../config/firebase';
 import { useRouter } from 'next/router';
 import {Customerslist} from '../components/Customerslist'
-
+import { Singlecustomer } from '../components/Singlecustomer';
+import TablePagination from '@mui/material/TablePagination';
 export interface  CustomersProps {
 }
 
@@ -42,7 +43,16 @@ export default function Customers (props:  CustomersProps) {
 }, [route,user])
 
 console.log('day la customers', customers);
-  
+const [page, setPage] = React.useState(0);
+const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+};
+const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+};
   return (
     <div>
       <main className={styles.main}>
@@ -51,6 +61,7 @@ console.log('day la customers', customers);
 
                         <h1>Customers</h1>
                         <div>
+                        <Paper sx={{ width: '100%', mb: 2 }}>
                             <TableContainer component={Paper}>
                                 <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                                     <TableHead>
@@ -64,12 +75,28 @@ console.log('day la customers', customers);
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        <Customerslist
+                                        {/* <Customerslist
                                             customers={customers}
-                                        />
+                                        /> */}
+                                        {customers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((customer: any) => (
+                                                <Singlecustomer 
+                                                key={customer.id} 
+                                                customer={customer} 
+                                                />
+                                            ))}
                                     </TableBody>
                                 </Table>
                             </TableContainer>
+                            <TablePagination
+                                    rowsPerPageOptions={[5, 10, 25]}
+                                    component="div"
+                                    count={customers.length}
+                                    rowsPerPage={rowsPerPage}
+                                    page={page}
+                                    onPageChange={handleChangePage}
+                                    onRowsPerPageChange={handleChangeRowsPerPage}
+                                />
+                            </Paper>
                         </div>
 
                     </div>

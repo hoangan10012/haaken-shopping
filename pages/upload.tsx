@@ -21,7 +21,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-
+import TablePagination from '@mui/material/TablePagination';
 
 export interface UploadProps {
 }
@@ -151,23 +151,23 @@ export default function Upload(props: UploadProps) {
     "Balenciaga",
     "Dior",
     "Gucci",
-    "Louis Vuiton",
+    "Louis Vuitton",
     "Drew",
   ];
   const category = [
     "T-Shirt",
     "Hoodie",
     "Jacket",
-    "Pant",
+    "Pants",
     "Polo",
+    "Sweater"
   ];
   const handleChangeBrand = (event: SelectChangeEvent<typeof Brand>) => {
     const {
       target: { value }
     } = event;
     setBrand(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
+      value
     );
   };
   const handleChangeCategory = (event: SelectChangeEvent<typeof Category>) => {
@@ -175,14 +175,13 @@ export default function Upload(props: UploadProps) {
       target: { value }
     } = event;
     setCategory(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
+      value
     );
   };
   const [id, setId] = useState('')
   const [Name, setName] = useState('')
-  const [Brand, setBrand] = useState<string[]>([])
-  const [Category, setCategory] = useState<string[]>([])
+  const [Brand, setBrand] = useState('')
+  const [Category, setCategory] = useState('')
   const [Price, setPrice] = useState('')
   const [isUpdate, setIsupdate] = useState(false)
   const GetId = (id: any, imgURL: any, Name: any, Brand: any, Category: any, Price: any) => {
@@ -212,6 +211,18 @@ export default function Upload(props: UploadProps) {
 
   }
   console.log("data update", data);
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   return (
     <div >
       <main className={styles.main}>
@@ -220,8 +231,11 @@ export default function Upload(props: UploadProps) {
             <div className='show-img'>
               {previewUrl &&
                 <>
-                  <img src={previewUrl} style={{ width: '100%', marginTop: '22%' }} />
-                  <Button type='button' onClick={pickedimghandler}>Edit image <EditIcon /></Button>
+                  <div >
+                    <img src={previewUrl} style={{ width: '100%', marginTop: '22%' }} />
+                    <Button type='button' onClick={pickedimghandler}>Edit image <EditIcon /></Button>
+                  </div>
+
                 </>
               }
             </div>
@@ -247,7 +261,7 @@ export default function Upload(props: UploadProps) {
                   <div className='forminput' style={{ display: 'grid' }} >
                     <label htmlFor=""> Name :</label>
                     <TextField
-                      sx={{   mt: 1 }}
+                      sx={{ mt: 1 }}
                       type="text"
                       placeholder='Name'
                       required
@@ -256,11 +270,11 @@ export default function Upload(props: UploadProps) {
                     />
                     <label htmlFor=""> Brand :</label>
 
-                    <FormControl sx={{   mt: 1 }}>
+                    <FormControl sx={{ mt: 1 }}>
                       <Select
                         displayEmpty
                         value={Brand}
-                        onChange={handleChangeBrand}
+                        onChange={(e: any) => setBrand(e.target.value)}
                       >
                         {brands.map((name) => (
                           <MenuItem
@@ -273,11 +287,11 @@ export default function Upload(props: UploadProps) {
                       </Select>
                     </FormControl>
                     <label htmlFor=""> Category :</label>
-                    <FormControl sx={{   mt: 1 }}>
+                    <FormControl sx={{ mt: 1 }}>
                       <Select
                         displayEmpty
                         value={Category}
-                        onChange={handleChangeCategory}
+                        onChange={(e: any) => setCategory(e.target.value)}
                       >
                         {category.map((name) => (
                           <MenuItem
@@ -298,7 +312,7 @@ export default function Upload(props: UploadProps) {
                     /> */}
                     <label htmlFor=""> Price :</label>
                     <TextField
-                    sx={{   mt: 1 }}
+                      sx={{ mt: 1 }}
                       type="text"
                       placeholder='Price'
                       required
@@ -326,62 +340,72 @@ export default function Upload(props: UploadProps) {
 
 
         <div className='list-pro'>
-          {products.length > 0 && (
-            <div>
-              <h1>List Product</h1>
+          <Paper sx={{ width: '100%', mb: 2 }}>
+            {products.length > 0 && (
               <div>
-                <TableContainer component={Paper}>
-                  <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell align="right">PRODUCT</TableCell>
-                        <TableCell align="right">NAME</TableCell>
-                        <TableCell align="right">BRAND</TableCell>
-                        <TableCell align="right">CATEGORY</TableCell>
-                        <TableCell align="right">PRICE</TableCell>
-                        <TableCell align="right">UPLOAD</TableCell>
-                        <TableCell align="right">DELETE</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody >
-                      {/* <Listproduct
+                <h1>List Product</h1>
+                <div>
+                  <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell align="right">PRODUCT</TableCell>
+                          <TableCell align="right">NAME</TableCell>
+                          <TableCell align="right">BRAND</TableCell>
+                          <TableCell align="right">CATEGORY</TableCell>
+                          <TableCell align="right">PRICE</TableCell>
+                          <TableCell align="right">UPLOAD</TableCell>
+                          <TableCell align="right">DELETE</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody >
+                        {/* <Listproduct
                         products={products}
                       /> */}
-                      {products.map((product: any) => {
-                        return (
-                          <>
-                            <TableRow
-                              key={product.id}
-                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            // onClick={()=>setData({id:product.id,imgURL:product.imgURL,Name:product.Name,Brand:product.Brand,Category:product.Category,Price:product.Price})}
-                            >
-                              <TableCell align="right">
-                                <img src={product.imgURL} style={{ width: 57, height: 61 }} ></img>
-                              </TableCell>
-                              <TableCell align="right">{product.Name}</TableCell>
-                              <TableCell align="right">{product.Brand}</TableCell>
-                              <TableCell align="right">{product.Category}</TableCell>
-                              <TableCell align="right">{product.Price}$ </TableCell>
-                              <TableCell align="right"><Button onClick={() => GetId(product.id, product.imgURL, product.Name, product.Brand, product.Category, product.Price)} ><EditIcon /></Button></TableCell>
-                              <TableCell align="right"><Button onClick={() => handleDelete(product.id)}><DeleteIcon /></Button></TableCell>
-                            </TableRow>
-                          </>
-                        )
-                      })}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
+                        {products.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((product: any) => {
+                          return (
+                            <>
+                              <TableRow
+                                key={product.id}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                              // onClick={()=>setData({id:product.id,imgURL:product.imgURL,Name:product.Name,Brand:product.Brand,Category:product.Category,Price:product.Price})}
+                              >
+                                <TableCell align="right">
+                                  <img src={product.imgURL} style={{ width: 57, height: 61 }} ></img>
+                                </TableCell>
+                                <TableCell align="right">{product.Name}</TableCell>
+                                <TableCell align="right">{product.Brand}</TableCell>
+                                <TableCell align="right">{product.Category}</TableCell>
+                                <TableCell align="right">{product.Price}$ </TableCell>
+                                <TableCell align="right"><Button onClick={() => GetId(product.id, product.imgURL, product.Name, product.Brand, product.Category, product.Price)} ><EditIcon /></Button></TableCell>
+                                <TableCell align="right"><Button onClick={() => handleDelete(product.id)}><DeleteIcon /></Button></TableCell>
+                              </TableRow>
+                            </>
+                          )
+                        })}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                  <TablePagination
+                    rowsPerPageOptions={[5, 10, 25]}
+                    component="div"
+                    count={products.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                  />
+                </div>
+
               </div>
 
-            </div>
-
-          )}
-          {products.length < 1 && (
-            <div>
-              No products to Show
-            </div>
-          )}
-
+            )}
+            {products.length < 1 && (
+              <div>
+                No products to Show
+              </div>
+            )}
+          </Paper>
         </div>
 
 

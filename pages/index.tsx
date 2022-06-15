@@ -57,14 +57,18 @@ const Home: NextPage = () => {
               <img width='1225' height='650' src="https://haaken.qodeinteractive.com/wp-content/uploads/2021/01/h1-masonty-img-7.jpg" alt="" />
             </Grid>
           </Grid>
+          <div style={{ width: '100%'}}>
+
+            <iframe src="https://player.vimeo.com/video/509220650?h=7a77033af3&amp;muted=1&amp;autoplay=1&amp;loop=1&amp;transparent=0&amp;background=1&amp;app_id=122963" allow="autoplay; fullscreen; picture-in-picture" title="DIOR SS21" data-ready="true" width='1850px' height='1052px'></iframe>
+          </div>
         </div>
-        <div id="new-colection" style={{ padding: '134px 0 47px' }}>
+        {/* <div id="new-colection" style={{ padding: '134px 0 47px' }}>
           <div style={{ marginLeft: '10%' }}>
             <span style={{ fontSize: '15px' }}> FRESH AND BOLD</span>
             <h2 style={{ fontSize: '40px', letterSpacing: '6px' }}>NEW COLLECTION</h2>
           </div>
-        </div>
-        <div id='translist'>
+        </div> */}
+        {/* <div id='translist'>
           <Grid container spacing={3}>
             <Grid item xs>
               <div id="item-vid">
@@ -104,8 +108,8 @@ const Home: NextPage = () => {
               </div>
             </Grid>
           </Grid>
-        </div>
-        <div style={{ marginTop: '5%' }}>
+        </div> */}
+        {/* <div style={{ marginTop: '5%' }}>
           <div className={styles.signup} >
             <div id="tittle-signup">
               <h4 style={{ textAlign: 'center' }} >SIGN UP FOR OUR NEWSLETTER</h4>
@@ -117,15 +121,16 @@ const Home: NextPage = () => {
               <button type="submit" className={styles.buttonsignup} ><span >Sign Up</span></button>
             </div>
           </div>
-        </div>
-        <div id="background-video">
-          <iframe src="https://player.vimeo.com/video/509220650?h=7a77033af3&amp;muted=1&amp;autoplay=1&amp;loop=1&amp;transparent=0&amp;background=1&amp;app_id=122963" allow="autoplay; fullscreen; picture-in-picture" title="DIOR SS21" data-ready="true" width='1888px' height='1062px'></iframe>
-        </div>
-        <div style={{ padding: '134px 0 47px', marginLeft: '100px', marginRight: '240px' }}>
+        </div> */}
+        {/* <div id="background-video" style={{width:'100%',paddingLeft:'1%'}}>
+          
+              <iframe  src="https://player.vimeo.com/video/509220650?h=7a77033af3&amp;muted=1&amp;autoplay=1&amp;loop=1&amp;transparent=0&amp;background=1&amp;app_id=122963" allow="autoplay; fullscreen; picture-in-picture" title="DIOR SS21" data-ready="true" width='1888px' height='1062px'></iframe>
+        </div> */}
+        {/* <div style={{ padding: '134px 0 47px', marginLeft: '100px', marginRight: '240px' }}>
           <span className={styles.tittleblog}>Pretty Important</span>
           <h2 className={styles.blogpost} >Blog Posts </h2>
-        </div>
-        <div id='listpost'>
+        </div> */}
+        {/* <div id='listpost'>
           <Grid sx={{ paddingLeft: '5%' }} container spacing={1}>
             <Grid item xs={4}>
               <img height='240px' width='440px' src="https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/h1-post-1-img.jpg" alt="" />
@@ -150,57 +155,11 @@ const Home: NextPage = () => {
             </Grid>
           </Grid>
 
-        </div>
-        <div id='itemclo'>
-          <Grid container spacing={0}>
-            <Grid item xs style={{ backgroundImage: 'url("https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/h1-product-7-background.jpg")' }}>
-              <img width="387" height="304" src="https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/h1-product-7-list-1.png" />
-              <div style={{ marginTop: '66px', marginBottom: '35px' }}>
-                <p style={{ fontSize: '14px', textAlign: 'center', color: '#ffffff', fontWeight: 500 }}>EVERYDAY</p>
-                <h3 style={{ textTransform: 'uppercase', fontSize: '25px', lineHeight: '1.28em', color: '#ffffff' }}>MYSTIC</h3>
-                <span style={{ marginLeft: '25%', color: '#ffffff' }}> £100.00</span>
+        </div> */}
 
-              </div>
-            </Grid>
-
-            <Grid item xs style={{ width:180, backgroundImage: 'url("https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/h1-product-8-background.jpg")' }}>
-              <img width="387" height="304" src="https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/h1-product-7-list-1.png" />
-              <div style={{ marginTop: '66px', marginBottom: '35px' }}>
-                <p style={{ fontSize: '14px', textAlign: 'center', color: '#ffffff', fontWeight: 500 }}>EVERYDAY</p>
-                <h3 style={{ textTransform: 'uppercase', fontSize: '25px', lineHeight: '1.28em', color: '#ffffff' }}>MYSTIC</h3>
-                <span style={{ marginLeft: '25%', color: '#ffffff' }}> £100.00</span>
-              </div>
-            </Grid>
-            <Grid item xs style={{ backgroundImage: 'url("https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/h1-product-9-background.jpg")' }}>
-              <img width="387" height="304" src="https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/h1-product-7-list-1.png" />
-              <div style={{ marginTop: '66px', marginBottom: '35px' }}>
-                <p style={{ fontSize: '14px', textAlign: 'center', color: '#ffffff', fontWeight: 500 }}>EVERYDAY</p>
-                <h3 style={{ textTransform: 'uppercase', fontSize: '25px', lineHeight: '1.28em', color: '#ffffff' }}>MYSTIC</h3>
-                <span style={{ marginLeft: '25%', color: '#ffffff' }}> £100.00</span>
-              </div>
-            </Grid>
-            <Grid item xs style={{ backgroundImage: 'url("https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/h1-product-10-background.jpg")' }}>
-              <img width="387" height="304" src="https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/h1-product-7-list-1.png" />
-              <div style={{ marginTop: '66px', marginBottom: '35px' }}>
-                <p style={{ fontSize: '14px', textAlign: 'center', color: '#ffffff', fontWeight: 500 }}>EVERYDAY</p>
-                <h3 style={{ textTransform: 'uppercase', fontSize: '25px', lineHeight: '1.28em', color: '#ffffff' }}>MYSTIC</h3>
-                <span style={{ marginLeft: '25%', color: '#ffffff' }}> £100.00</span>
-              </div>
-            </Grid>
-            <Grid item xs style={{ backgroundImage: 'url("https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/h1-product-11-background.jpg")' }}>
-              <img width="387" height="304" src="https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/h1-product-7-list-1.png" />
-              <div style={{ marginTop: '66px', marginBottom: '35px' }}>
-                <p style={{ fontSize: '14px', textAlign: 'center', color: '#ffffff', fontWeight: 500 }}>EVERYDAY</p>
-                <h3 style={{ textTransform: 'uppercase', fontSize: '25px', lineHeight: '1.28em', color: '#ffffff' }}>MYSTIC</h3>
-                <span style={{ marginLeft: '25%', color: '#ffffff' }}> £100.00</span>
-
-              </div>
-            </Grid>
-          </Grid>
-        </div>
-        <div id="container-pretty" >
-          <div id="content-pretty" style={{ marginLeft: '252px', marginRight: '252px' }}>
-            <div id="tittle-pretty">
+        <div id="container-pretty"  >
+          <div id="content-pretty" style={{ padding: '134px 0 47px', marginLeft: '100px', marginRight: '240px' }}>
+            <div id="tittle-pretty" >
               <span style={{ fontSize: '14px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '.06em', display: 'block', marginBottom: '5px', textAlign: 'right', marginRight: '10px' }} >PRETTY IMPORTANT</span>
               <h2 style={{ textTransform: 'uppercase', fontSize: '40px', lineHeight: '1.2em', letterSpacing: '.26em', fontWeight: 700, textAlign: 'right' }} >TESTIMONIALS</h2>
             </div>

@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import TextareaAutosize from '@mui/material/TextareaAutosize'
 import Button from '@mui/material/Button';
 import { CashOnDeli } from '../components/CashOnDeli';
-import { Tablecart } from '../components/Tablecart';
+
 export interface IAppProps {
 }
 
@@ -213,7 +213,7 @@ export default function App(props: IAppProps) {
       </main> */}
 
       <main  className={styles.main}>
-        <Tablecart/>
+      
       </main>
     </div>
   );

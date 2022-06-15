@@ -15,12 +15,14 @@ import { useRouter } from "next/router";
 import styles from '../../styles/collection.module.css'
 import { Filters } from "../../components/Filters";
 import { applyInitialState } from "@mui/x-data-grid/hooks/features/columns/gridColumnsUtils";
+import Breadcum from "../../components/Breadcum";
 export interface ColectionProps {
 }
 
 export default function Colection(props: ColectionProps) {
   const [products, setProducts] = useState([]);
   const [productsFilter, setProductFilter] = useState([]);
+
   const router = useRouter();
   useEffect(() => {
     const unsub = onSnapshot(
@@ -33,6 +35,7 @@ export default function Colection(props: ColectionProps) {
         console.log("day la list", list);
         setProducts(list);
         setProductFilter(list);
+
       },
       (error) => {
         console.log(error);
@@ -72,9 +75,18 @@ export default function Colection(props: ColectionProps) {
     }
     setProductFilter([...arrPrice]);
   };
-
+const[filteredProducts,setFilteredProducts]=useState([]);
+const [filters,setFilters]=useState({
+  s:''
+})
+useEffect(()=>{
+  let allproducts = products.filter((p:any)=>p.Name.toLowerCase().indexOf(filters.s.toLowerCase())>=0)
+  setProductFilter(allproducts);
+},[filters]);
+console.log('filteredProducts:::',filteredProducts)
   return (
     <div >
+      <Breadcum/>
       <main className={styles.main}>
         <div style={{marginTop:'2%',marginBottom:'10%'}} >
           <Grid container spacing={3}>
@@ -82,7 +94,7 @@ export default function Colection(props: ColectionProps) {
               < Filters changeProducts={handleChangeProducts} />
             </Grid>
             <Grid item xs={10}>
-              <Collections {...{ productsFilter, sortProducts }} />
+              <Collections {...{ productsFilter, sortProducts,filters,setFilters}} />
             </Grid>
           </Grid>
         </div>

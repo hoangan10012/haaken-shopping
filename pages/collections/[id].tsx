@@ -26,6 +26,7 @@ import Navbar from '../../components/navbar'
 import { ModalSigninSignup } from "../../components/ModalSigninSignup";
 import { route } from "next/dist/server/router";
 import Radio from '@mui/material/Radio';
+import Breadcum from "../../components/Breadcum";
 export const getStaticPaths = async () => {
   const snapshot = await getDocs(collection(db, 'products'));
   const paths = snapshot.docs.map(doc => {
@@ -191,6 +192,7 @@ export default function Details({ proProps }: any) {
   }
   return (
     <div>
+     <Breadcum hasEndLink={product?.Brand + " " + product?.Name} />
       <main className={styles.main}>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={1}>

@@ -20,7 +20,8 @@ import { CashOnDeli } from '../components/CashOnDeli';
 import { useRouter } from 'next/router';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
-
+import { IndividualCartProduct } from '../components/IndividualCartProduct';
+import TablePagination from '@mui/material/TablePagination';
 export interface IAppProps {
 }
 
@@ -53,7 +54,7 @@ export default function App(props: IAppProps) {
         } else {
             route.push('/login')
         }
-    }, [route,user])
+    }, [route, user])
 
     console.log('day la cartProducts', cartProducts);
 
@@ -123,16 +124,23 @@ export default function App(props: IAppProps) {
         }
 
     }
+
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+    const handleChangePage = (event: unknown, newPage: number) => {
+        setPage(newPage);
+    };
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
     return (
         <div>
             <div className={styles.namepage}>
                 <div className={styles.gridtittle}>
                     <span style={{ color: 'white' }} >Home/Cart</span>
                 </div>
-
-
-
-
             </div>
             <main className={styles.main}>
                 {cartProducts.length > 0 && (
@@ -140,31 +148,49 @@ export default function App(props: IAppProps) {
 
                         <h1>Cart</h1>
                         <div>
-       
+                            <Paper sx={{ width: '100%', mb: 2 }}>
 
-                            <TableContainer component={Paper}>
-                                <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell align="right">PRODUCT</TableCell>
-                                            <TableCell align="right">NAME</TableCell>
-                                            <TableCell align="right">BRAND</TableCell>
-                                            <TableCell align="right">SIZE</TableCell>
-                                            <TableCell align="right">PRICE</TableCell>
-                                            <TableCell align="right">QUANTITY</TableCell>
-                                            <TableCell align="right">SUBTOTAL</TableCell>
-                                            <TableCell align="right">DELETE</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        <CartProducts
+                                <TableContainer component={Paper}>
+                                    <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell align="right">PRODUCT</TableCell>
+                                                <TableCell align="right">NAME</TableCell>
+                                                <TableCell align="right">BRAND</TableCell>
+                                                <TableCell align="right">SIZE</TableCell>
+                                                <TableCell align="right">PRICE</TableCell>
+                                                <TableCell align="right">QUANTITY</TableCell>
+                                                <TableCell align="right">SUBTOTAL</TableCell>
+                                                <TableCell align="right">DELETE</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {/* <CartProducts
                                             cartProducts={cartProducts}
                                             cartProductIncrease={cartProductIncrease}
                                             cartProductDecrease={cartProductDecrease}
-                                        />
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
+                                        /> */}
+                                            {cartProducts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((cartProduct: any) => (
+                                                <IndividualCartProduct
+                                                    key={cartProduct.id}
+                                                    cartProduct={cartProduct}
+                                                    cartProductIncrease={cartProductIncrease}
+                                                    cartProductDecrease={cartProductDecrease}
+                                                />
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                                <TablePagination
+                                    rowsPerPageOptions={[5, 10, 25]}
+                                    component="div"
+                                    count={cartProducts.length}
+                                    rowsPerPage={rowsPerPage}
+                                    page={page}
+                                    onPageChange={handleChangePage}
+                                    onRowsPerPageChange={handleChangeRowsPerPage}
+                                />
+                            </Paper>
                         </div>
                         <div className='box'>
                             <h3>Cart Summary</h3>
@@ -206,7 +232,7 @@ export default function App(props: IAppProps) {
 
                 )}
                 {cartProducts.length < 1 && (
-                    <div>
+                    <div >
                         No products to Show
                     </div>
                 )}

@@ -10,6 +10,7 @@ import Grid from '@mui/material/Grid';
 import { useRouter } from 'next/router';
 import { Product } from '../models/product.model'
 import Select from "react-select";
+import Input from '@mui/material/Input';
 
 const options = [
     { value: "default", label: "Default" },
@@ -45,8 +46,6 @@ const ProductCard = ({ id, imgURL, Name, Brand, Price }: any) => {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="small" onClick={e => seeMore(id, e)}>Details</Button>
-                        {/* <Button size="small" >Add To Cart</Button> */}
                     </CardActions>
                 </Card>
             </Link>
@@ -54,35 +53,64 @@ const ProductCard = ({ id, imgURL, Name, Brand, Price }: any) => {
         </div>
     )
 }
-export const Collections = ({ productsFilter, sortProducts }: any) => {
+export const Collections = ({ productsFilter, sortProducts,setFilters}: any) => {
+    const search = (s:any)=>{
+        setFilters({
+            s
+        })
+    }
     return (
         <div >
             <div>
                 <Grid container spacing={2}>
-                    <Grid item xs={8}>
+                    <Grid item xs={4}>
                         <h1>Collections</h1>
                     </Grid>
                     <Grid item xs={4}>
-                        <div style={{marginTop:'5%', width:'50%',marginLeft:'20%'}}>
-                        <Select
-                            options={options}
-                            onChange={(e: any) => sortProducts(e.value)}
+                        <Grid container spacing={2}>
+                            <Grid item xs={3} > <h4>Search</h4> </Grid>
+                            <Grid item xs={9}  >
+                                <div style={{ marginTop: '4%', width: '60%' }}>
+                                    <Input
+                                        placeholder='Search'
+                                        onKeyUp={(e:any)=>search(e.target.value)}
+                                    />
 
-                        />
-                        </div>
+                                </div>
+
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={3} ><h4>Sort by Price :</h4> </Grid>
+                            <Grid item xs={9}  >
+                                <div style={{ marginTop: '4%', width: '60%' }}>
+                                    <Select
+                                        options={options}
+                                        onChange={(e: any) => sortProducts(e.value)}
+                                    />
+
+                                </div>
+
+                            </Grid>
+                        </Grid>
+                        {/* <div style={{marginTop:'2%', width:'50%',marginLeft:'20%',display:'flex'}}>
                         
+                       
+                        </div> */}
+
                     </Grid>
                 </Grid>
             </div>
-            <div style={{marginTop:'1%'}} >
+            <div style={{ marginTop: '1%' }} >
                 <Grid container spacing={5}>
                     {productsFilter.map((product: any) => (
                         <Grid item xs={4} key={product.id}>
                             <ProductCard {...product} />
                         </Grid>
                     )
-                    )}
-
+                    )}               
                 </Grid>
             </div>
         </div>

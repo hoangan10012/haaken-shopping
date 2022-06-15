@@ -7,6 +7,7 @@ import { db } from '../config/firebase';
 import { deleteDoc, doc } from 'firebase/firestore';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export const IndividualCartProduct = ({ cartProduct, cartProductIncrease, cartProductDecrease }: any) => {
     const { user } = useAuth();
@@ -47,7 +48,7 @@ export const IndividualCartProduct = ({ cartProduct, cartProductIncrease, cartPr
                     </Button>
                 </TableCell>
                 <TableCell align="right">{cartProduct.TotalProductPrice}$</TableCell>
-                <TableCell align="right"><Button onClick={handleDelete}>DELETE</Button></TableCell>
+                <TableCell align="right"><Button onClick={handleDelete}><DeleteIcon /></Button></TableCell>
             </TableRow>
         </>
     )

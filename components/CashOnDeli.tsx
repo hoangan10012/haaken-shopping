@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { db } from '../config/firebase';
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, serverTimestamp } from 'firebase/firestore';
 import { useRouter } from 'next/router';
+import TextField from '@mui/material/TextField';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -18,9 +19,9 @@ const style = {
     p: 4,
 };
 
-export const CashOnDeli = ({ totalPrice, totalQty, cartProducts,qty }: any) => {
-    console.log('day laaaaaaaaa cart prodycttt' ,cartProducts);
-    console.log('day laaaaaaaaa quan tyy' ,qty);
+export const CashOnDeli = ({ totalPrice, totalQty, cartProducts, qty }: any) => {
+    console.log('day laaaaaaaaa cart prodycttt', cartProducts);
+    console.log('day laaaaaaaaa quan tyy', qty);
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
     const [cartPrice] = useState(totalPrice);
@@ -35,54 +36,78 @@ export const CashOnDeli = ({ totalPrice, totalQty, cartProducts,qty }: any) => {
         console.log('user datatatata', user.email);
         await addDoc(collection(db, "Buyer-Personal-Info"), {
             Email: user.email,
-            Phone:phone,
-            Address:address,
-            CartPrice:cartPrice,
-            CartQty:cartQty, 
-            timeStamp: serverTimestamp()    
-          });
-          const cartData =await getDocs(collection(db, "cart "+uid ));
-          for(var snap of cartData.docs){
-              const data= snap.data();
-              data.id = snap.id;
-              data['Phone']=phone;
-              data['Address']=address;
-              data['CartPrice']=cartPrice;
-              data['CartQty']=cartQty;
-              data['timeStamp']=serverTimestamp()
-              await addDoc(collection(db, "Buyer-Cart "+uid), {
-              data,  
-              });
-              await addDoc(collection(db, "processing"), {
-               data
-              });
-              await deleteDoc(doc(db, "cart "+uid, snap.id));
-          }
-          route.push('/collections');
+            Phone: phone,
+            Address: address,
+            CartPrice: cartPrice,
+            CartQty: cartQty,
+            timeStamp: serverTimestamp()
+        });
+        const cartData = await getDocs(collection(db, "cart " + uid));
+        for (var snap of cartData.docs) {
+            const data = snap.data();
+            data.id = snap.id;
+            data['Phone'] = phone;
+            data['Address'] = address;
+            data['CartPrice'] = cartPrice;
+            data['CartQty'] = cartQty;
+            data['timeStamp'] = serverTimestamp()
+            await addDoc(collection(db, "Buyer-Cart " + uid), {
+                data,
+            });
+            await addDoc(collection(db, "processing"), {
+                data
+            });
+            await deleteDoc(doc(db, "cart " + uid, snap.id));
+        }
+        route.push('/collections');
     }
-    return  (
+    return (
         <div>
             <Box sx={style}>
-                <form onSubmit={handleCashOnDelivery} >
-                    <input type="text" placeholder='Cell no'
-                        required onChange={(e: any) => setPhone(e.target.value)} value={phone}
+                <form onSubmit={handleCashOnDelivery} style={{ display: 'grid' }}>
+                    <h2>Check Out</h2>
+                    <label htmlFor="">Phone Number : </label>
+                    <TextField
+                        sx={{ mt: 1 }}
+                        type="text"
+                        placeholder='Cell no'
+                        required
+                        value={phone}
+                        onChange={(e: any) => setPhone(e.target.value)}
                     />
-                    <br />
-                    <input type="text" placeholder='Address'
-                        required onChange={(e: any) => setAddress(e.target.value)} value={address}
+
+                    <label htmlFor="">Address : </label>
+                    <TextField
+                        sx={{ mt: 1 }}
+                        type="text"
+                        placeholder='Address'
+                        required
+                        value={address}
+                        onChange={(e: any) => setAddress(e.target.value)}
                     />
-                    <br />
-                    <br />
+
                     <label >Total Quantity</label>
-                    <input type="text" readOnly required value={cartQty} />
-                    <br />
+                    <TextField
+                        sx={{ mt: 1 }}
+                        type="text"
+                        required
+                        value={cartQty}
+                        disabled
+                    />
                     <label >Total Price</label>
-                    <input type="text" readOnly required value={cartPrice} />
-                    <br />
-                    <Button type='submit' >Submit</Button>
+                    <TextField
+                        sx={{ mt: 1 }}
+                        type="text"
+                        required
+                        value={`${cartPrice}$`}
+                        disabled
+                    />
+                    <div style={{textAlign: 'center',paddingTop: '5%'}}>
+                        <Button type='submit' >Submit</Button>
+                    </div>
                 </form>
             </Box>
         </div>
-     
+
     )
 }
