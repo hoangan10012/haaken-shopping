@@ -65,16 +65,16 @@ const Item = styled(Paper)(({ theme }) => ({
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 export default function Details({ proProps }: any) {
   const RadioButton = ({ value, handleActiveSize, actived }: any) => {
-  return (
-    <Button >
-      <Radio onChange={handleChangesize} 
-      value={value} 
-      onClick={() => handleActiveSize(value)} />
-      {value}
-    </Button>
-    
-  );
-};
+    return (
+      <Button >
+        <Radio onChange={handleChangesize}
+          value={value}
+          onClick={() => handleActiveSize(value)} />
+        {value}
+      </Button>
+
+    );
+  };
   const handleChangesize = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
   };
@@ -169,34 +169,35 @@ export default function Details({ proProps }: any) {
   const uid = GetUserUid();
 
   const handleAddToCart = async () => {
-    if (uid !== null  ) {
-      if(valueSize!== null){
-        product['username']= user.email; 
+    if (uid !== null) {
+      if (valueSize !== null) {
+        product['username'] = user.email;
         product['qty'] = 1;
-        product['size']= valueSize; 
+        product['size'] = valueSize;
         product['TotalProductPrice'] = product.qty * product.Price;
         // Add a new document with a generated id
         const newCartRef = doc(collection(db, "cart " + uid));
         // later...
         await setDoc(newCartRef, product);
         router.push('/cart')
-      }else{
+      } else {
         alert('please choose size')
       }
-      
+
     }
     else {
-      router.push('/login'); 
+      router.push('/login');
 
     }
   }
   return (
     <div>
-     <Breadcum hasEndLink={product?.Brand + " " + product?.Name} />
+      <Breadcum hasEndLink={product?.Brand + "/" + product?.Name} />
       <main className={styles.main}>
+        <h1>Details</h1>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={1}>
-            <Grid className={styles.imagepro} item xs={7}>
+            <Grid className={styles.imagepro} item xs={4}>
               <Item sx={{ height: '679px' }}>
                 <Card sx={{ maxWidth: 566 }}>
                   <CardMedia
@@ -207,14 +208,16 @@ export default function Details({ proProps }: any) {
                 </Card>
               </Item>
             </Grid>
-            <Grid item xs={5}>
+            <Grid item xs={8}>
               <Item className={styles.details}>
-                <h2>{product.Name}</h2>
-                <span>BRAND: {product.Brand}</span> <br></br>
-                <span>CATEGORY: {product.Category}</span> <br></br>
-                <span>Price:{product.Price}$</span>
-                <p className="text-xl font-medium mt-3">Select Size</p>
-                <div className="flex mt-5">
+                <h2 style={{ color: 'black',fontSize:50 }}>{product.Name}</h2>
+                <div style={{fontSize:17,width: 'fit-content',textAlign: 'initial',margin:'auto'}}>
+                <p><b  style={{ color: 'black' }}>Brand : </b> {product.Brand}</p>
+                <p><b  style={{ color: 'black' }}>Category : </b>{product.Category}</p>
+                <p><b  style={{ color: 'black' }}>Price : </b>{product.Price}$</p>
+                </div>
+                <span style={{fontSize: 17}} >Select Size</span>
+                <div >
                   {SIZE.map((item, index) => (
                     <RadioButton
                       required
@@ -225,7 +228,7 @@ export default function Details({ proProps }: any) {
                     />
                   ))}
                 </div>
-                <Button onClick={handleAddToCart}>Add to Cart</Button>
+                <Button onClick={handleAddToCart} variant="contained">Add to Cart</Button>
               </Item>
             </Grid>
           </Grid>

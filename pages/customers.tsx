@@ -14,6 +14,7 @@ import { useRouter } from 'next/router';
 import {Customerslist} from '../components/Customerslist'
 import { Singlecustomer } from '../components/Singlecustomer';
 import TablePagination from '@mui/material/TablePagination';
+import Breadcum from '../components/Breadcum';
 export interface  CustomersProps {
 }
 
@@ -55,10 +56,10 @@ const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => 
 };
   return (
     <div>
+           <Breadcum/>
       <main className={styles.main}>
       {customers.length > 0 && (
                     <div>
-
                         <h1>Customers</h1>
                         <div>
                         <Paper sx={{ width: '100%', mb: 2 }}>

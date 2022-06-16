@@ -14,6 +14,7 @@ import { db } from '../config/firebase';
 import { Listorder } from '../components/Listorder';
 import { SingleOrder } from '../components/SingleOrder';
 import TablePagination from '@mui/material/TablePagination';
+import Breadcum from '../components/Breadcum';
 export interface  OrderProps {
 }
 
@@ -57,13 +58,12 @@ export default function Order (props:  OrderProps) {
   };
   return (
     <div>
+        <Breadcum/>
         <main className={styles.main}>
         {orders.length > 0 && (
                     <div>
-
                         <h1> Oders are pending</h1>
                         <div>
-       
                         <Paper sx={{ width: '100%', mb: 2 }}>
                             <TableContainer component={Paper}>
                                 <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">

@@ -17,49 +17,49 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Grid container spacing={0}>
+        <Grid container spacing={0} >
           <Grid item xs>
-            <img style={{ width: '100%' }} src="https://haaken.qodeinteractive.com/wp-content/uploads/2021/01/h1-slider-images-1.jpg" alt="" />
+            <img style={{ width:'100%'}} src="balen1.jpg" alt="" />
           </Grid>
           <Grid item xs>
-            <img style={{ width: '100%' }} src="https://haaken.qodeinteractive.com/wp-content/uploads/2021/01/h1-slider-images-6.jpg" alt="" />
+            <img style={{ height:535 }} src="dior-03.jpg" alt="" />
           </Grid>
         </Grid>
         <div className={styles.sevenpic}>
-          <Grid container spacing={2} >
+          <Grid container spacing={2} style={{paddingTop:'1%'}}>
             <Grid item xs={8}>
-              <img width='1225' height='650' src="https://haaken.qodeinteractive.com/wp-content/uploads/2020/12/h1-masonty-img-1-2-1260x650.jpg" alt="" />
+              <img width='1225' height='650' src="h1.jpg" alt="" />
             </Grid>
             <Grid item xs={4}>
-              <img width='602' height='650' src="https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/h1-masonty-img-2.jpg" alt="" />
+              <img width='602' height='650' src="h2.jpg" alt="" />
             </Grid>
           </Grid>
           <Grid style={{ marginTop: '1%' }} container spacing={2} >
             <Grid item xs={8}>
               <Grid container spacing={2} >
                 <Grid item xs={6}>
-                  <img width='600' height='612' src="https://haaken.qodeinteractive.com/wp-content/uploads/2021/01/h1-masonty-img-3.jpg" alt="" />
+                  <img width='600' height='612' src="h3.jpg" alt="" />
                 </Grid>
                 <Grid item xs={6}>
-                  <img width='600' height='612' src="https://haaken.qodeinteractive.com/wp-content/uploads/2021/01/h1-masonty-img-4.jpg" alt="" />
+                  <img width='600' height='612' src="h4.jpg" alt="" />
                 </Grid>
               </Grid>
             </Grid>
             <Grid item xs={4}>
-              <img width='600' height='612' src="https://haaken.qodeinteractive.com/wp-content/uploads/2021/01/h1-masonty-img-5.jpg" alt="" />
+              <img width='600' height='612' src="h5.jpg" alt="" />
             </Grid>
           </Grid>
           <Grid style={{ marginTop: '1%' }} container spacing={1} >
             <Grid item xs={4}>
-              <img width='602' height='650' src="https://haaken.qodeinteractive.com/wp-content/uploads/2021/01/h1-masonty-img-6.jpg" alt="" />
+              <img width='602' height='650' src="h6.jpg" alt="" />
             </Grid>
             <Grid item xs={8}>
-              <img width='1225' height='650' src="https://haaken.qodeinteractive.com/wp-content/uploads/2021/01/h1-masonty-img-7.jpg" alt="" />
+              <img width='1225' height='650' src="h7.jpg" alt="" />
             </Grid>
           </Grid>
           <div style={{ width: '100%'}}>
 
-            <iframe src="https://player.vimeo.com/video/509220650?h=7a77033af3&amp;muted=1&amp;autoplay=1&amp;loop=1&amp;transparent=0&amp;background=1&amp;app_id=122963" allow="autoplay; fullscreen; picture-in-picture" title="DIOR SS21" data-ready="true" width='1850px' height='1052px'></iframe>
+            <iframe src="https://player.vimeo.com/video/509220650?h=7a77033af3&amp;muted=1&amp;autoplay=1&amp;loop=1&amp;transparent=0&amp;background=1&amp;app_id=122963" allow="autoplay; fullscreen; picture-in-picture" title="DIOR SS21" data-ready="true" width='1850px' height='1042px'></iframe>
           </div>
         </div>
         {/* <div id="new-colection" style={{ padding: '134px 0 47px' }}>
@@ -179,7 +179,7 @@ const Home: NextPage = () => {
                       <p style={{ fontSize: '16px' }} >Writer</p>
                     </div>
                     <div style={{ textAlign: 'right', flex: '15%' }}>
-                      <img width="110" height="111" src="https://haaken.qodeinteractive.com/wp-content/uploads/2021/04/h1-testimonial-2.jpg" />
+                      <img width="110" height="111" src="hava.jpg" />
                     </div>
                   </div>
                 </Grid>
@@ -191,22 +191,22 @@ const Home: NextPage = () => {
         <Grid style={{ borderWidth: '0 20px 20px', borderStyle: 'solid', borderColor: '#ffffff', backgroundColor: '#e8e8f9', marginTop: '5%' }} container>
           <Grid container spacing={1} style={{ padding: '82px 0px 52px 0px', textAlign: 'center' }}>
             <Grid item xs={2}  >
-              <img width="160" height="160" src="https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/client-1.png" />
+              <img width="160" height="160" src="c1.png" />
             </Grid>
             <Grid item xs={2}  >
-              <img width="160" height="160" src="https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/client-2.png" />
+              <img width="160" height="160" src="c2.png" />
             </Grid>
             <Grid item xs={2}  >
-              <img width="160" height="160" src="https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/client-3.png" />
+              <img width="160" height="160" src="c3.png" />
             </Grid>
             <Grid item xs={2}  >
-              <img width="160" height="160" src="https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/client-4.png" />
+              <img width="160" height="160" src="c4.png" />
             </Grid>
             <Grid item xs={2}  >
-              <img width="160" height="160" src="https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/client-5.png" />
+              <img width="160" height="160" src="c5.png" />
             </Grid>
             <Grid item xs={2} >
-              <img width="160" height="160" src="https://haaken.qodeinteractive.com/wp-content/uploads/2020/11/client-6.png" />
+              <img width="160" height="160" src="c6.png" />
             </Grid>
           </Grid>
         </Grid>

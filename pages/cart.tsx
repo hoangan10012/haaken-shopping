@@ -22,6 +22,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { IndividualCartProduct } from '../components/IndividualCartProduct';
 import TablePagination from '@mui/material/TablePagination';
+import Breadcum from '../components/Breadcum';
 export interface IAppProps {
 }
 
@@ -137,11 +138,7 @@ export default function App(props: IAppProps) {
     };
     return (
         <div>
-            <div className={styles.namepage}>
-                <div className={styles.gridtittle}>
-                    <span style={{ color: 'white' }} >Home/Cart</span>
-                </div>
-            </div>
+           <Breadcum/>
             <main className={styles.main}>
                 {cartProducts.length > 0 && (
                     <div>
@@ -217,7 +214,7 @@ export default function App(props: IAppProps) {
                                 </Table>
                             </TableContainer>
                             <br />
-                            <Button onClick={handleOpen} className={styles.icon}>Checkout</Button>
+                            <Button onClick={handleOpen} className={styles.icon}variant="contained">Checkout</Button>
                             <Modal
                                 open={open}
                                 onClose={handleClose}
@@ -233,7 +230,7 @@ export default function App(props: IAppProps) {
                 )}
                 {cartProducts.length < 1 && (
                     <div >
-                        No products to Show
+                        No products to Show.
                     </div>
                 )}
             </main>

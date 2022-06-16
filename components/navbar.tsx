@@ -99,9 +99,9 @@ export default function Navbar() {
     <AppBar position="static" className={styles.container} sx={{ backgroundColor: 'white', color: 'black' }} >
       <Grid container spacing={3} >
         <Grid item xs={4} className={styles.list}>
-          <img width="95" height="56" src="https://haaken.qodeinteractive.com/wp-content/uploads/2021/04/h1-logo-1.png" alt='' />
+          <img width="95" height="56" src="h1-logo-1.png" alt='' />
         </Grid>
-        <Grid item xs={4} className={styles.item} style={{justifyContent: 'center'}}>
+        <Grid item xs={4} className={styles.item} style={{ justifyContent: 'center', paddingLeft: '6%', paddingTop: '2%' }}>
           <ul className={styles.list}>
             <li className={styles.listitem}>
               <Link href="/">
@@ -212,7 +212,7 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <div className={styles.list} style={{ paddingTop: 'inherit', textAlign: 'center', marginLeft: '5%' }}>
+              <div className={styles.list} style={{ paddingTop: '2%', textAlign: 'center', marginLeft: '5%' }}>
                 <Link href='/login'>
                   <Button  >
                     Login

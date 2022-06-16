@@ -11,13 +11,14 @@ import { useRouter } from 'next/router';
 import { Product } from '../models/product.model'
 import Select from "react-select";
 import Input from '@mui/material/Input';
+import SearchIcon from '@mui/icons-material/Search';
 
 const options = [
     { value: "default", label: "Default" },
     { value: "high", label: "Price: High to low" },
     { value: "low", label: "Price: Low to high" },
 ]
-const ProductCard = ({ id, imgURL, Name, Brand, Price }: any) => {
+const ProductCard = ({ id, imgURL, Name, Brand, Price,Category }: any) => {
     const router = useRouter();
     const seeMore = (id: any, e: any) => {
         e.stopPropagation();
@@ -26,23 +27,25 @@ const ProductCard = ({ id, imgURL, Name, Brand, Price }: any) => {
     return (
         <div>
             <Link href={`/collections/${id}`}>
-                <Card sx={{ maxWidth: 345 }}>
+                <Card sx={{ maxWidth: 345 }} >
                     <CardMedia
                         component="img"
                         height="345"
                         width="100%"
                         image={imgURL}
-
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                             {Name}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            {Brand}
+                        <Typography variant="body2" color="text.secondary" style={{color:'black'}}>
+                           <b>Brand: </b> {Brand}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            price:{Price}$
+                        <Typography variant="body2" color="text.secondary" style={{color:'black'}}>
+                           <b>Category: </b> {Category}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary" style={{color:'black'}}>
+                        <b>price: </b>{Price}$
                         </Typography>
                     </CardContent>
                     <CardActions>
@@ -53,7 +56,7 @@ const ProductCard = ({ id, imgURL, Name, Brand, Price }: any) => {
         </div>
     )
 }
-export const Collections = ({ productsFilter, sortProducts,setFilters}: any) => {
+export const Collections = ({ productsFilter, sortProducts,setFilters,filteredProducts }: any) => {
     const search = (s:any)=>{
         setFilters({
             s
@@ -63,23 +66,18 @@ export const Collections = ({ productsFilter, sortProducts,setFilters}: any) => 
         <div >
             <div>
                 <Grid container spacing={2}>
-                    <Grid item xs={4}>
+                    <Grid item xs={3}>
                         <h1>Collections</h1>
                     </Grid>
-                    <Grid item xs={4}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={3} > <h4>Search</h4> </Grid>
-                            <Grid item xs={9}  >
+                    <Grid item xs={5}>                       
                                 <div style={{ marginTop: '4%', width: '60%' }}>
                                     <Input
                                         placeholder='Search'
                                         onKeyUp={(e:any)=>search(e.target.value)}
+                                        style={{width:'400px'}}
                                     />
 
-                                </div>
-
-                            </Grid>
-                        </Grid>
+                                </div>      
                     </Grid>
                     <Grid item xs={4}>
                         <Grid container spacing={2}>

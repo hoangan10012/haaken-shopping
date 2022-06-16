@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../context/AuthContext'
 import { Button } from '@mui/material';
 import Link from 'next/link'
+import Breadcum from '../components/Breadcum';
 
 
 export interface LoginProps {
@@ -30,15 +31,16 @@ export default function Login(props: LoginProps) {
     }
     return (
         <div>
+            <Breadcum/>
             <main className={styles.main}>
-
                 <div className={styles.form}>
-                    <form style={{ display: 'grid' }}>
-                        <h1>Login</h1>
-                        <label >Email:</label>
+                <h1>Login</h1>
+                    <form onSubmit={handleLogin} style={{ display: 'grid' }}>
+                        <label>Email:</label>
                         <TextField
                             placeholder='Email'
                             type="Email"
+                            required
                             onChange={(e: any) =>
                                 setData({
                                     ...data,
@@ -46,11 +48,13 @@ export default function Login(props: LoginProps) {
                                 })
                             }
                             value={data.email}
+                            style={{paddingBottom:'5%',paddingTop:'5%'}} 
                         />
                         <label >Password:</label>
                         <TextField
                             placeholder='Password'
                             type="password"
+                            required
                             onChange={(e: any) =>
                                 setData({
                                     ...data,
@@ -58,8 +62,10 @@ export default function Login(props: LoginProps) {
                                 })
                             }
                             value={data.password}
+                            style={{paddingBottom:'5%',paddingTop:'5%'}}
+                           
                         />
-                        <Button onClick={handleLogin}>LOGIN</Button>
+                        <Button type='submit'  variant="contained">LOGIN</Button>
                         <div style={{ display: 'flex' }}>
                             <p>Not a member ?</p>
                             <Button><Link href='/register' >Register</Link></Button>

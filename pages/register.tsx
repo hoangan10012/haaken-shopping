@@ -7,6 +7,7 @@ import { Button } from '@mui/material';
 import Link from 'next/link'
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
+import Breadcum from '../components/Breadcum';
 
 export interface RegisterProps {
 }
@@ -35,9 +36,10 @@ export default function Register(props: RegisterProps) {
 
     return (
         <div>
+            <Breadcum/>
             <main className={styles.main}>
                 <div className={styles.form}>
-                    <form action="" style={{ display: 'grid' }}>
+                    <form onSubmit={handleSignup} style={{ display: 'grid' }}>
                         <h1>Register</h1>
                         <label>Email:</label>
                         <TextField
@@ -48,14 +50,16 @@ export default function Register(props: RegisterProps) {
                                 })
                             }
                             value={data.email}
+                            required
                             placeholder='Email'
                             type="Email"
-
+                            style={{paddingBottom:'5%',paddingTop:'5%'}}
                         />
                          <label>Password:</label>
                         <TextField
                             placeholder='Password'
                             type="password"
+                            required
                             onChange={(e: any) =>
                                 setData({
                                     ...data,
@@ -63,8 +67,9 @@ export default function Register(props: RegisterProps) {
                                 })
                             }
                             value={data.password}
+                            style={{paddingBottom:'5%',paddingTop:'5%'}}
                         />
-                        <Button onClick={handleSignup}>REGISTER</Button>
+                        <Button  type='submit'  variant="contained">REGISTER</Button>
                     </form>
                 </div>
             </main>

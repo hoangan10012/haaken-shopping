@@ -22,6 +22,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import TablePagination from '@mui/material/TablePagination';
+import Breadcum from '../components/Breadcum';
 
 export interface UploadProps {
 }
@@ -162,22 +163,6 @@ export default function Upload(props: UploadProps) {
     "Polo",
     "Sweater"
   ];
-  const handleChangeBrand = (event: SelectChangeEvent<typeof Brand>) => {
-    const {
-      target: { value }
-    } = event;
-    setBrand(
-      value
-    );
-  };
-  const handleChangeCategory = (event: SelectChangeEvent<typeof Category>) => {
-    const {
-      target: { value }
-    } = event;
-    setCategory(
-      value
-    );
-  };
   const [id, setId] = useState('')
   const [Name, setName] = useState('')
   const [Brand, setBrand] = useState('')
@@ -193,7 +178,8 @@ export default function Upload(props: UploadProps) {
     setPrice(Price)
     setIsupdate(true)
   }
-  const updateFields = () => {
+  const updateFields = (e:any) => {
+    e.preventDefault()
     if (user) {
       let fieldToEdit = doc(db, 'products', id);
       updateDoc(fieldToEdit, {
@@ -225,6 +211,7 @@ export default function Upload(props: UploadProps) {
 
   return (
     <div >
+      <Breadcum/>
       <main className={styles.main}>
         <Grid container spacing={2}>
           <Grid item xs={4}>
@@ -243,7 +230,7 @@ export default function Upload(props: UploadProps) {
           <Grid item xs={8}>
             <div className='upload-info'>
               <h1>Upload Product</h1>
-              <form  >
+              <form onSubmit={handleAdd} >
                 <div className='formInput'>
                   <label htmlFor="">
                     Image
@@ -320,19 +307,21 @@ export default function Upload(props: UploadProps) {
                       onChange={(e: any) => setPrice(e.target.value)}
                     />
                   </div>
+
                 </div>
                 {/* <Button type='submit' variant="contained" >ADD</Button> */}
+                <div style={{marginLeft:'45%',marginTop:'5%'}}>
                 {!isUpdate &&
                   <>
-                    <Button onClick={handleAdd} variant="contained" >ADD</Button>
+                    <Button type='submit' variant="contained" color="success" >ADD</Button>
                   </>
                 }
                 {isUpdate &&
                   <>
-                    <Button onClick={updateFields} variant="contained" >UPDATE</Button>
+                    <Button type='submit' onClick={updateFields} variant="contained" >UPDATE</Button>
                   </>
                 }
-
+                </div>
               </form>
             </div>
           </Grid>
