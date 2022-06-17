@@ -192,7 +192,7 @@ export default function Details({ proProps }: any) {
   }
   return (
     <div>
-      <Breadcum hasEndLink={product?.Brand + "/" + product?.Name} />
+      <Breadcum hasEndLink={product?.Name} />
       <main className={styles.main}>
         <h1>Details</h1>
         <Box sx={{ flexGrow: 1 }}>

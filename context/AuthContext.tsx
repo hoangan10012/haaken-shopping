@@ -7,6 +7,8 @@ import {
 } from 'firebase/auth'
 import { auth } from '../config/firebase'
 import { useRouter } from "next/router";
+import { setDoc,doc } from "firebase/firestore";
+import { db } from '../config/firebase';
 
 const AuthContext = createContext<any>({})
 
@@ -38,9 +40,7 @@ export const AuthContextProvider = ({
     }, [])
     console.log("user ::::",user)
     const signup = (email: string, password: string) => {
-        return createUserWithEmailAndPassword(auth, email, password).then(()=>{
-            logout()
-        })
+        return createUserWithEmailAndPassword(auth, email, password)
     }
     const login = (email: string, password: string) => {
         return signInWithEmailAndPassword(auth, email, password)

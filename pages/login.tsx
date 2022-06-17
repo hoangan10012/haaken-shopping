@@ -26,6 +26,7 @@ export default function Login(props: LoginProps) {
             await login(data.email, data.password)
             router.push('/').then(() => { router.reload() })
         } catch (err) {
+            alert('Sai thong tin dang nhap')
             console.log(err)
         }
     }

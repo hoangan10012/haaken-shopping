@@ -18,11 +18,11 @@ const Breadcum = ({ hasEndLink }:any) => {
             <div className={styles.gridtittle} style={{ color: 'white' }}>
 
                 <span >
-                    <Link href="/">Home</Link> /
+                    <Link href="/">Home</Link>/
                     {arrLink.map((link) => (
                         <>
                             {" "}
-                            <Link href={`\\${link}`}>{link}</Link> /
+                            <Link href={`\\${link}`}>{link}</Link>/ {" "}
                         </>
                     ))}
                     {endLink}

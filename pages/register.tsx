@@ -14,20 +14,30 @@ export interface RegisterProps {
 
 export default function Register(props: RegisterProps) {
     const router = useRouter()
-    const { signup,logout } = useAuth()
+    const { signup, logout } = useAuth()
     const [data, setData] = useState({
         email: '',
         password: '',
+
     })
+    const [repass, setRepass] = useState('');
     const handleSignup = async (e: any) => {
         e.preventDefault()
         try {
-            const res = await signup(data.email, data.password);
-            await setDoc(doc(db, "users " , res.user.uid), {
-                ...data
-            })
-            router.push('/login')
+            if (repass == data.password) {
+                const res = await signup(data.email, data.password);
+                await setDoc(doc(db, "users ", res.user.uid), {
+                    ...data
+                }).then(()=>{
+                        logout()
+                    });
+                alert('dang ky thanh cong')
+                router.push('/login')
+            } else {
+                alert('password not match')
+            }
         } catch (err) {
+            alert('email nay da duoc dang ky')
             console.log(err)
         }
 
@@ -36,7 +46,7 @@ export default function Register(props: RegisterProps) {
 
     return (
         <div>
-            <Breadcum/>
+            <Breadcum />
             <main className={styles.main}>
                 <div className={styles.form}>
                     <form onSubmit={handleSignup} style={{ display: 'grid' }}>
@@ -53,9 +63,9 @@ export default function Register(props: RegisterProps) {
                             required
                             placeholder='Email'
                             type="Email"
-                            style={{paddingBottom:'5%',paddingTop:'5%'}}
+                            style={{ paddingBottom: '5%', paddingTop: '5%' }}
                         />
-                         <label>Password:</label>
+                        <label>Password:</label>
                         <TextField
                             placeholder='Password'
                             type="password"
@@ -67,9 +77,18 @@ export default function Register(props: RegisterProps) {
                                 })
                             }
                             value={data.password}
-                            style={{paddingBottom:'5%',paddingTop:'5%'}}
+                            style={{ paddingBottom: '5%', paddingTop: '5%' }}
                         />
-                        <Button  type='submit'  variant="contained">REGISTER</Button>
+                        <label>ConfirmPassword:</label>
+                        <TextField
+                            placeholder='ConfirmPassword'
+                            type="password"
+                            required
+                            onChange={(e: any) => setRepass(e.target.value)}
+                            value={repass}
+                            style={{ paddingBottom: '5%', paddingTop: '5%' }}
+                        />
+                        <Button type='submit' variant="contained">REGISTER</Button>
                     </form>
                 </div>
             </main>
