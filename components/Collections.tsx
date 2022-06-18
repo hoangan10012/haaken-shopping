@@ -27,7 +27,7 @@ const ProductCard = ({ id, imgURL, Name, Brand, Price,Category }: any) => {
     return (
         <div>
             <Link href={`/collections/${id}`}>
-                <Card sx={{ maxWidth: 345 }} >
+                <Card sx={{ maxWidth: 345,maxHeight: 500  }} >
                     <CardMedia
                         component="img"
                         height="345"
