@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { collection, doc, setDoc, addDoc, serverTimestamp, onSnapshot, getDocs, deleteDoc, updateDoc } from "firebase/firestore";
 import { auth, db, storage } from '../config/firebase'
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import { ref, uploadBytesResumable, getDownloadURL, } from 'firebase/storage'
 import styles from '../styles/upload.module.css'
 import { useAuth } from '../context/AuthContext';
 import { useRouter } from 'next/router';
@@ -71,7 +71,14 @@ export default function Upload(props: UploadProps) {
         }
       );
     };
+    // const uploadImage = async (file:any) => {
+    //   const storageRef = ref(storage, `perfume/${file?.name}`);
+    //   const metadata = await uploadBytes(storageRef, file);
+    //   const url = await getDownloadURL(metadata.ref);
+    //   setpreviewUrl(url)
+    // }
     file && uploadFile();
+    // uploadImage(file)
   }, [file]);
 
 

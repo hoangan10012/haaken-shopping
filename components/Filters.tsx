@@ -55,8 +55,8 @@ export const Filters = ({ changeProducts }:any) => {
           console.log(error);
       }
   );
-  })
-  console.log("day la filter",filters)
+  },[])
+  // console.log("day la filter",filters)
   return (
     <div style={{marginLeft:'20%'}}>
     <h1 className="text-2xl">Filters</h1>

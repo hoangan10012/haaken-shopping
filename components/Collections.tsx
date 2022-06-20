@@ -47,6 +47,7 @@ const ProductCard = ({ id, imgURL, Name, Brand, Price,Category }: any) => {
                         <Typography variant="body2" color="text.secondary" style={{color:'black'}}>
                         <b>price: </b>{Price}$
                         </Typography>
+                        {/* <Button onClick={(e)=>seeMore(id,e)}>Details</Button> */}
                     </CardContent>
                     <CardActions>
                     </CardActions>

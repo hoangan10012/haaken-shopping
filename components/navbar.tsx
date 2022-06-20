@@ -99,7 +99,7 @@ export default function Navbar() {
     <AppBar position="static" className={styles.container} sx={{ backgroundColor: 'white', color: 'black' }} >
       <Grid container spacing={3} >
         <Grid item xs={4} className={styles.list}>
-          <img width="95" height="56" src="h1-logo-1.png" alt='' />
+          <img width="95" height="56" src="h1logo1.png" alt='' />
         </Grid>
         <Grid item xs={4} className={styles.item} style={{ justifyContent: 'center', paddingLeft: '6%', paddingTop: '2%' }}>
           <ul className={styles.list}>

@@ -27,8 +27,29 @@ import { ModalSigninSignup } from "../../components/ModalSigninSignup";
 import { route } from "next/dist/server/router";
 import Radio from '@mui/material/Radio';
 import Breadcum from "../../components/Breadcum";
-
-
+// export const getStaticPaths = async () => {
+//   const snapshot = await getDocs(collection(db, 'products'));
+//   const paths = snapshot.docs.map(doc => {
+//     return {
+//       params: { id: doc.id.toString() }
+//     }
+//   })
+//   return {
+//     paths,
+//     fallback: false
+//   }
+// }
+export const getServerSideProps = async (context: any) => {
+  const id = context.params.id;
+  const docRef = doc(db, "products", id);
+  const docSnap = await getDoc(docRef);
+  console.log('JSON.stringify(docSnap.data()) :::::::::',JSON.stringify(docSnap.data()));
+  return {
+    props: {
+      proProps: JSON.stringify(docSnap.data()) || null
+    }
+  }
+}
 
 export interface DetailsProps {
 }
@@ -270,33 +291,4 @@ export default function Details({ proProps }: any) {
       </main>
     </div>
   );
-}
-export const getStaticProps = async (context: any) => {
-  const id = context.params.id;
-  const docRef = doc(db, "products", id);
-  const docSnap = await getDoc(docRef);
-  return {
-    props: {
-      proProps: JSON.stringify(docSnap.data()) || null
-    }
-  }
-  
-}
-
-export const getStaticPaths = async () => {
-  try{
-    const snapshot = await getDocs(collection(db, 'products'));
-    const paths = snapshot.docs.map(doc => {
-      return {
-        params: { id: doc.id.toString() }
-      }
-    })
-    return {
-      paths,
-      fallback: false
-    }
-  }catch(err){
-    throw err;
-  }
- 
 }
